@@ -4,7 +4,7 @@ export const products: ProductData[] = [
   {
     id: 'cordyceps',
     name: '那曲冬虫夏草',
-    subName: 'Winter Worm Summer Grass',
+    subName: 'Nagqu Cordyceps',
     description: '核心亮点：高海拔原生环境、遵循自然生长节律、营养峰值采收、区块链溯源',
     narrative: '冬藏虫灵，夏沐草华，4500米以上的雪域灵气凝结。一根虫草，承载高原亿万年生态沉淀，以醇厚质感，传递自然赋予的养生能量。',
     tags: ['雪域臻品', '溯源保真', '4500米'],
@@ -32,7 +32,7 @@ export const products: ProductData[] = [
   {
     id: 'water',
     name: '7100冰川水',
-    subName: 'Glacial Water',
+    subName: '7100 Glacial Water',
     description: '核心亮点：源头直采、零污染、限量取水、全流程零排放',
     narrative: '源自念青唐古拉冰川融水，历经岩层天然过滤，清冽甘醇。每一滴都承载着雪域的纯净，恪守“取之有度、反哺有方”的承诺，让净境之水滋养生活。',
     tags: ['雪域净源', '冰川直采', '冰川活水'],

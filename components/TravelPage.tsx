@@ -47,7 +47,7 @@ export const TravelPage: React.FC<TravelPageProps> = ({ onBack }) => {
             <ScrollReveal animation="fade-up">
                 <div className="flex items-center justify-center gap-4 mb-8">
                     <span className="h-[1px] w-12 bg-[#C6A87C]"></span>
-                    <span className="text-[#C6A87C] tracking-[0.5em] text-xs uppercase">Cang Jing Travel</span>
+                    <span className="text-[#C6A87C] tracking-[0.5em] text-xs uppercase">Zang Jing Travel</span>
                     <span className="h-[1px] w-12 bg-[#C6A87C]"></span>
                 </div>
                 <h1 className="text-5xl md:text-8xl serif font-light mb-8 tracking-wide">问道川藏<br/><span className="text-3xl md:text-5xl italic opacity-80 mt-4 block">寻觅雪域秘境</span></h1>

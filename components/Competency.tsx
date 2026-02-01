@@ -14,7 +14,7 @@ export const Competency: React.FC = () => {
              </div>
              <div className="md:w-2/3 flex justify-end">
                 <p className="text-[#8A8885] text-sm max-w-md font-light leading-relaxed text-right hidden md:block">
-                  依托国企背景与完善的供应链体系，<br/>为雪域珍宝的每一次抵达保驾护航。
+                  依托深厚产业积淀与完善的供应链体系，<br/>为雪域珍宝的每一次抵达保驾护航。
                 </p>
              </div>
           </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ProductData } from '../types';
 import { ArrowDownIcon } from './Icons';
 import { ScrollReveal } from './ScrollReveal';
@@ -11,6 +11,7 @@ interface ProductDetailProps {
 
 export const ProductDetail: React.FC<ProductDetailProps> = ({ product, onBack }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [activeFaq, setActiveFaq] = useState<number | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -35,6 +36,10 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product, onBack })
     }
   };
 
+  const toggleFaq = (index: number) => {
+    setActiveFaq(activeFaq === index ? null : index);
+  };
+
   return (
     <div className="bg-[#FDFBF7] min-h-screen animate-fade-in-up selection:bg-[#C6A87C] selection:text-white">
       {/* Navigation Bar Placeholder for Back Button */}
@@ -51,7 +56,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product, onBack })
       </div>
 
       {/* Hero Section */}
-      <section className="relative h-[80vh] w-full overflow-hidden">
+      <section className="relative h-[60vh] w-full overflow-hidden">
         <div className="absolute inset-0">
            <img src={product.detailImage || product.image} alt={product.name} className="w-full h-full object-cover" />
            <div className="absolute inset-0 bg-black/40"></div>
@@ -70,32 +75,55 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product, onBack })
         </div>
       </section>
 
-      {/* Basic Specs */}
-      <section className="py-20 bg-white border-b border-[#E5E0D6]">
-         <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12">
+      {/* Basic Specs & Introduction */}
+      <section className="py-24 bg-white border-b border-[#E5E0D6]">
+         <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
             <div>
-               <h3 className="text-[#C6A87C] text-xs font-bold uppercase tracking-[0.2em] mb-4">Origin & Specs</h3>
-               <h2 className="text-3xl serif text-[#1A1918] mb-8">产地与规格</h2>
-               <div className="space-y-6 text-[#5E5C58]">
-                  <div>
-                     <span className="block text-xs text-[#8A8885] uppercase tracking-wider mb-1">产地 Source</span>
-                     <p className="serif text-lg">{product.origin}</p>
-                  </div>
-                  <div>
-                     <span className="block text-xs text-[#8A8885] uppercase tracking-wider mb-1">规格 Specification</span>
-                     <p className="serif text-lg">{product.specs}</p>
-                  </div>
-               </div>
+               <ScrollReveal animation="fade-up">
+                   <h3 className="text-[#C6A87C] text-xs font-bold uppercase tracking-[0.2em] mb-4">Origin & Specs</h3>
+                   <h2 className="text-3xl serif text-[#1A1918] mb-8">产地与规格</h2>
+                   <div className="space-y-6 text-[#5E5C58]">
+                      <div>
+                         <span className="block text-xs text-[#8A8885] uppercase tracking-wider mb-2">产地 Source</span>
+                         <p className="serif text-xl text-[#1A1918]">{product.origin}</p>
+                      </div>
+                      <div>
+                         <span className="block text-xs text-[#8A8885] uppercase tracking-wider mb-2">规格 Specification</span>
+                         <p className="serif text-xl text-[#1A1918]">{product.specs}</p>
+                      </div>
+                      <div className="pt-6">
+                        <div className="flex flex-wrap gap-3">
+                            {product.tags.map((tag, i) => (
+                                <span key={i} className="px-5 py-2 border border-[#E5E0D6] text-[#5E5C58] text-xs tracking-widest uppercase">{tag}</span>
+                            ))}
+                        </div>
+                      </div>
+                   </div>
+               </ScrollReveal>
             </div>
-            <div className="flex flex-wrap gap-4 content-start">
-               {product.tags.map((tag, i) => (
-                  <span key={i} className="px-6 py-3 border border-[#E5E0D6] text-[#5E5C58] text-sm tracking-widest">{tag}</span>
-               ))}
+            
+            {/* Detailed Specs Table (New) */}
+            <div className="bg-[#FDFBF7] p-10 border border-[#E5E0D6]">
+                <ScrollReveal animation="fade-up" delay={100}>
+                    <h3 className="serif text-xl text-[#1A1918] mb-6 pb-4 border-b border-[#E5E0D6]">详细参数</h3>
+                    <div className="space-y-4">
+                        {product.detailedSpecs ? (
+                            product.detailedSpecs.map((spec, i) => (
+                                <div key={i} className="flex justify-between items-center text-sm py-2 border-b border-[#E5E0D6]/50 last:border-0">
+                                    <span className="text-[#8A8885] font-light">{spec.label}</span>
+                                    <span className="text-[#1A1918] serif font-medium">{spec.value}</span>
+                                </div>
+                            ))
+                        ) : (
+                            <p className="text-sm text-[#8A8885]">暂无详细参数</p>
+                        )}
+                    </div>
+                </ScrollReveal>
             </div>
          </div>
       </section>
 
-      {/* Detailed Features */}
+      {/* Core Features */}
       <section className="py-24 bg-[#FDFBF7]">
          <div className="container mx-auto px-6">
             <ScrollReveal animation="fade-up">
@@ -108,10 +136,10 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product, onBack })
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                {product.detailedFeatures?.map((feature, i) => (
                   <ScrollReveal key={i} animation="fade-up" delay={i * 100}>
-                    <div className="bg-white p-10 shadow-sm hover:shadow-md transition-shadow duration-500 h-full border-t-2 border-transparent hover:border-[#C6A87C]">
-                       <span className="text-4xl text-[#E5E0D6] serif font-bold mb-4 block">0{i + 1}</span>
+                    <div className="bg-white p-10 shadow-sm hover:shadow-lg transition-all duration-500 h-full border-t-2 border-transparent hover:border-[#C6A87C] group">
+                       <span className="text-4xl text-[#E5E0D6] serif font-bold mb-4 block group-hover:text-[#C6A87C] transition-colors">0{i + 1}</span>
                        <h3 className="text-xl serif text-[#1A1918] mb-4">{feature.title}</h3>
-                       <p className="text-[#8A8885] leading-loose text-sm text-justify">
+                       <p className="text-[#8A8885] leading-loose text-sm text-justify font-light">
                           {feature.text}
                        </p>
                     </div>
@@ -121,31 +149,72 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product, onBack })
          </div>
       </section>
 
-      {/* Usage Methods Section */}
+      {/* Usage Methods Section (Redesigned to match Features) */}
       {product.usageMethods && (
         <section className="py-24 bg-white border-b border-[#E5E0D6]">
            <div className="container mx-auto px-6">
               <ScrollReveal animation="fade-up">
-                <div className="flex flex-col md:flex-row gap-12 items-start">
-                   <div className="md:w-1/3">
-                      <h4 className="text-[#C6A87C] tracking-[0.2em] text-xs font-medium uppercase mb-4">How to Enjoy</h4>
-                      <h2 className="text-3xl serif text-[#1A1918]">赏味指南</h2>
-                   </div>
-                   <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-8">
-                      {product.usageMethods.map((method, i) => (
-                        <div key={i} className="flex gap-4">
-                            <span className="text-[#C6A87C] serif text-xl italic">0{i + 1}</span>
-                            <div>
-                               <h3 className="text-lg serif text-[#1A1918] mb-2">{method.title}</h3>
-                               <p className="text-[#8A8885] text-sm leading-relaxed text-justify">{method.description}</p>
-                            </div>
-                        </div>
-                      ))}
-                   </div>
+                <div className="text-center mb-20">
+                     <h4 className="text-[#C6A87C] tracking-[0.2em] text-xs font-medium uppercase mb-4">How to Enjoy</h4>
+                     <h2 className="text-3xl md:text-4xl serif text-[#1A1918]">赏味指南</h2>
+                     <div className="w-12 h-[1px] bg-[#C6A87C] mx-auto mt-6"></div>
                 </div>
               </ScrollReveal>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  {product.usageMethods.map((method, i) => (
+                    <ScrollReveal key={i} animation="fade-up" delay={i * 100}>
+                        <div className="bg-[#FDFBF7] p-10 shadow-sm hover:shadow-lg transition-all duration-500 h-full border-t-2 border-transparent hover:border-[#C6A87C] group">
+                           <span className="text-4xl text-[#E5E0D6] serif font-bold mb-4 block group-hover:text-[#C6A87C] transition-colors italic">0{i + 1}</span>
+                           <h3 className="text-xl serif text-[#1A1918] mb-4">{method.title}</h3>
+                           <p className="text-[#8A8885] leading-loose text-sm text-justify font-light">
+                              {method.description}
+                           </p>
+                        </div>
+                    </ScrollReveal>
+                  ))}
+              </div>
            </div>
         </section>
+      )}
+      
+      {/* FAQ Section (New) */}
+      {product.qna && (
+          <section className="py-24 bg-[#FDFBF7]">
+             <div className="container mx-auto px-6 max-w-4xl">
+                 <ScrollReveal animation="fade-up">
+                    <div className="text-center mb-16">
+                         <h4 className="text-[#C6A87C] tracking-[0.2em] text-xs font-medium uppercase mb-4">Q&A</h4>
+                         <h2 className="text-3xl serif text-[#1A1918]">常见问题</h2>
+                    </div>
+                 </ScrollReveal>
+                 
+                 <div className="space-y-4">
+                     {product.qna.map((item, i) => (
+                         <ScrollReveal key={i} animation="fade-up" delay={i * 50}>
+                             <div className="bg-white border border-[#E5E0D6] overflow-hidden">
+                                 <button 
+                                    onClick={() => toggleFaq(i)}
+                                    className="w-full flex justify-between items-center p-6 text-left hover:bg-[#FAFAFA] transition-colors"
+                                 >
+                                     <span className={`serif text-lg ${activeFaq === i ? 'text-[#C6A87C]' : 'text-[#1A1918]'}`}>{item.question}</span>
+                                     <div className={`w-6 h-6 rounded-full border border-[#D4D4D4] flex items-center justify-center transition-transform duration-300 ${activeFaq === i ? 'rotate-180 border-[#C6A87C] text-[#C6A87C]' : 'text-[#999]'}`}>
+                                        <ArrowDownIcon className="w-3 h-3" />
+                                     </div>
+                                 </button>
+                                 <div 
+                                    className={`overflow-hidden transition-all duration-500 ease-in-out ${activeFaq === i ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'}`}
+                                 >
+                                     <div className="p-6 pt-0 text-[#8A8885] font-light text-sm leading-loose">
+                                         {item.answer}
+                                     </div>
+                                 </div>
+                             </div>
+                         </ScrollReveal>
+                     ))}
+                 </div>
+             </div>
+          </section>
       )}
 
       {/* Certificates & Reports Slideshow */}

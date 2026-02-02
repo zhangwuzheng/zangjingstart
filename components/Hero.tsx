@@ -24,7 +24,7 @@ export const Hero: React.FC = () => {
             <div className="w-full h-full scale-110 transition-transform duration-[2s] ease-out" 
                 style={{ transform: `scale(1.1) translate(${-offset.x * 0.5}px, ${-offset.y * 0.5}px)` }}>
                 <img
-                src="https://t9.baidu.com/it/u=2741309925,2415829049&fm=193" 
+                src="https://copyright.bdstatic.com/vcg/creative/f92b0c56f2cf5c668da93e401892b253.jpg@c_1,w_2048,h_1365,x_0,y_0" 
                 alt="Xizang Landscape"
                 className="w-full h-full object-cover opacity-50 animate-pulse-slow"
                 loading="eager"
@@ -60,8 +60,7 @@ export const Hero: React.FC = () => {
            <ScrollReveal animation="fade-up" delay={400}>
              {/* Use font-light for elegance, increased spacing */}
              <h1 className="text-4xl md:text-7xl text-[#F2F0EB] font-light leading-tight serif mb-10 drop-shadow-2xl tracking-wide">
-               <span className="block mb-2">山有藏珍</span>
-               <span className="block text-[#8A8885] italic">水至净境</span>
+               <span className="block mb-2">藏境山水</span>
              </h1>
            </ScrollReveal>
 

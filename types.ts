@@ -30,6 +30,9 @@ export interface ProductData {
   reports?: { title: string; image: string }[];
   detailedFeatures?: { title: string; text: string }[];
   usageMethods?: { title: string; description: string }[];
+  // Newly added for "Rich Content"
+  detailedSpecs?: { label: string; value: string }[];
+  qna?: { question: string; answer: string }[];
 }
 
 export interface NewsItem {

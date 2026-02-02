@@ -27,14 +27,24 @@ export const products: ProductData[] = [
     ],
     certificates: [
       'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=600&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=600&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=600&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=600&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=600&auto=format&fit=crop'
     ],
     reports: [
         { title: '腺苷含量检测报告', image: 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=600&auto=format&fit=crop' },
         { title: '重金属残留检测', image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=600&auto=format&fit=crop' }
+    ],
+    detailedSpecs: [
+        { label: '产地海拔', value: '4500m - 4800m' },
+        { label: '虫体色泽', value: '金黄或棕黄，色泽自然' },
+        { label: '干湿程度', value: '干度95%以上，脆度适中' },
+        { label: '洁净度', value: '深度清洁，无泥沙，无重金属残留' },
+        { label: '腺苷含量', value: '≥0.01% (优于国标)' },
+        { label: '储存方式', value: '密封置于阴凉干燥处，冷藏更佳' }
+    ],
+    qna: [
+        { question: '如何辨别那曲虫草的真伪？', answer: '正宗那曲虫草虫体色泽黄净，子座较短，虫体饱满，背部环纹清晰（三瘦一肥），闻之有浓郁的酥油香或菌香味，无腥臭味。' },
+        { question: '虫草可以天天吃吗？', answer: '建议循序渐进。一般作为日常保健，每日1-3根即可；身体虚弱者可适当增加。关键在于坚持，细水长流方能见效。' },
+        { question: '收到后如何保存？', answer: '建议收到后密封放置于冰箱冷冻层（-18℃以下）保存，可有效防潮防虫，锁住营养成分，保质期可达2年。' }
     ]
   },
   {
@@ -67,6 +77,19 @@ export const products: ProductData[] = [
     ],
     reports: [
         { title: '106项水质全检', image: 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=600&auto=format&fit=crop' }
+    ],
+    detailedSpecs: [
+        { label: '水源地', value: '念青唐古拉山脉南麓' },
+        { label: 'PH值', value: '7.3 ± 0.5 (天然弱碱性)' },
+        { label: '溶解性总固体', value: '80 - 150 mg/L' },
+        { label: '锂含量', value: '0.12 - 0.28 mg/L' },
+        { label: '锶含量', value: '0.20 - 0.50 mg/L' },
+        { label: '包装材质', value: '高硼硅玻璃 / 环保PET' }
+    ],
+    qna: [
+        { question: '这款水适合宝宝冲奶粉吗？', answer: '非常适合。7100冰川水是天然低氘、低钠软水，分子团小，代谢负担低，且矿物质含量均衡，有助于保护婴幼儿娇嫩的肾脏。' },
+        { question: '可以直接加热饮用吗？', answer: '可以。建议加热至45-60度饮用，不建议反复烧开，以免导致水中的活性氧和矿物质流失，影响口感与功效。' },
+        { question: '为什么口感有点甘甜？', answer: '这是优质冰川水的自然特征。经过岩层常年过滤，富含锂、锶等微量元素，且无有机物污染，因此入口绵软甘冽。' }
     ]
   },
   {
@@ -98,6 +121,19 @@ export const products: ProductData[] = [
     ],
     reports: [
         { title: '农残重金属检测', image: 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=600&auto=format&fit=crop' }
+    ],
+    detailedSpecs: [
+        { label: '产品等级', value: '出口级 / 特级' },
+        { label: '长度规格', value: '5-7cm / 7-9cm / 9-12cm' },
+        { label: '开伞度', value: '未开伞 (营养价值最高)' },
+        { label: '新鲜度', value: '采摘后48小时内发货' },
+        { label: '运输方式', value: '顺丰冷链空运' },
+        { label: '虫伤率', value: '严格筛选，无虫眼' }
+    ],
+    qna: [
+        { question: '松茸表面看起来有点脏，要怎么洗？', answer: '鲜松茸极其娇贵。建议用陶瓷刀轻轻刮去根部泥土，在流水下快速冲洗（不要浸泡），用厨房纸吸干水分即可，切勿用力搓洗以免损伤香气。' },
+        { question: '收到后可以放多久？', answer: '鲜松茸保鲜期极短。建议收到后立即食用，口感最佳。若需保存，用吸水纸包裹放入冰箱冷藏（0-3℃）可保存3-5天；长期保存建议切片冷冻。' },
+        { question: '开伞的松茸和未开伞的有什么区别？', answer: '未开伞的松茸（童茸）营养价值和口感最好，肉质紧实脆嫩；开伞后孢子散发，香气虽浓但营养和口感略逊，价格也相对较低。我们只发未开伞的臻品。' }
     ]
   },
   {
@@ -131,6 +167,19 @@ export const products: ProductData[] = [
     reports: [
         { title: '营养成分分析报告', image: 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=600&auto=format&fit=crop' },
         { title: '食品安全检测', image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=600&auto=format&fit=crop' }
+    ],
+    detailedSpecs: [
+        { label: '生长周期', value: '12 - 18 个月 (自然慢养)' },
+        { label: '脂肪含量', value: '比普通猪肉低 50% 以上' },
+        { label: '氨基酸', value: '富含19种氨基酸及微量元素' },
+        { label: '饲养方式', value: '高海拔林间纯散养' },
+        { label: '屠宰加工', value: '标准化无菌屠宰车间' },
+        { label: '包装规格', value: '500g / 1000g 真空保鲜装' }
+    ],
+    qna: [
+        { question: '藏香猪肉为什么比普通猪肉贵？', answer: '藏香猪生长在高原，生长周期长达一年半（普通猪仅3-4个月），且以天然珍贵植物为食，产量稀少，营养价值极高，被称为“高原之珍”。' },
+        { question: '肉质口感有什么特点？', answer: '藏香猪皮薄（仅2mm左右），肉质紧致有弹性，肥肉晶莹剔透、爽口不腻，瘦肉鲜红、纹理清晰，煮熟后有天然的奶香味。' },
+        { question: '冷冻发货会影响口感吗？', answer: '我们采用零下35度急冻锁鲜技术，配合真空包装和冷链运输，解冻后能最大程度还原鲜肉的口感与营养，与现宰差异极小。' }
     ]
   }
 ];

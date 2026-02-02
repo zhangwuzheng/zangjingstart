@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { ProductData } from '../types';
 import { ArrowDownIcon } from './Icons';
 import { ScrollReveal } from './ScrollReveal';
@@ -10,12 +10,33 @@ interface ProductDetailProps {
 }
 
 export const ProductDetail: React.FC<ProductDetailProps> = ({ product, onBack }) => {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [product]);
 
+  // Combine certificates and reports into one array for the slider
+  const galleryItems = [
+    ...(product.certificates || []).map(src => ({ type: 'Qualification', title: '资质认证', image: src })),
+    ...(product.reports || []).map(r => ({ type: 'Report', title: r.title, image: r.image }))
+  ];
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      const scrollAmount = 340; // Card width + gap
+      const targetScroll = container.scrollLeft + (direction === 'left' ? -scrollAmount : scrollAmount);
+      
+      container.scrollTo({
+        left: targetScroll,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
-    <div className="bg-[#FDFBF7] min-h-screen animate-fade-in-up">
+    <div className="bg-[#FDFBF7] min-h-screen animate-fade-in-up selection:bg-[#C6A87C] selection:text-white">
       {/* Navigation Bar Placeholder for Back Button */}
       <div className="fixed top-0 left-0 w-full z-50 p-6 flex justify-between items-center mix-blend-difference text-white">
         <button 
@@ -100,49 +121,94 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product, onBack })
          </div>
       </section>
 
-      {/* Certificates & Reports */}
-      <section className="py-24 bg-[#1A1918] text-[#E5E5E5]">
-         <div className="container mx-auto px-6">
+      {/* Usage Methods Section */}
+      {product.usageMethods && (
+        <section className="py-24 bg-white border-b border-[#E5E0D6]">
+           <div className="container mx-auto px-6">
+              <ScrollReveal animation="fade-up">
+                <div className="flex flex-col md:flex-row gap-12 items-start">
+                   <div className="md:w-1/3">
+                      <h4 className="text-[#C6A87C] tracking-[0.2em] text-xs font-medium uppercase mb-4">How to Enjoy</h4>
+                      <h2 className="text-3xl serif text-[#1A1918]">赏味指南</h2>
+                   </div>
+                   <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-8">
+                      {product.usageMethods.map((method, i) => (
+                        <div key={i} className="flex gap-4">
+                            <span className="text-[#C6A87C] serif text-xl italic">0{i + 1}</span>
+                            <div>
+                               <h3 className="text-lg serif text-[#1A1918] mb-2">{method.title}</h3>
+                               <p className="text-[#8A8885] text-sm leading-relaxed text-justify">{method.description}</p>
+                            </div>
+                        </div>
+                      ))}
+                   </div>
+                </div>
+              </ScrollReveal>
+           </div>
+        </section>
+      )}
+
+      {/* Certificates & Reports Slideshow */}
+      <section className="py-32 bg-[#1A1918] text-[#E5E5E5] overflow-hidden">
+         <div className="container mx-auto px-6 relative">
             <div className="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-white/10 pb-8">
                <div>
                   <h4 className="text-[#C6A87C] tracking-[0.2em] text-xs font-medium uppercase mb-4">Trust & Safety</h4>
                   <h2 className="text-3xl serif font-light">资质与检测报告</h2>
                </div>
-               <p className="text-[#8A8885] text-xs tracking-wide mt-4 md:mt-0">
-                  Transparency is our promise.<br/>Every batch is tested.
-               </p>
+               
+               {/* Controls */}
+               <div className="flex gap-4 mt-8 md:mt-0">
+                  <button onClick={() => scroll('left')} className="w-12 h-12 rounded-full border border-white/20 hover:border-[#C6A87C] hover:text-[#C6A87C] flex items-center justify-center transition-all duration-300 active:scale-95">
+                     <ArrowDownIcon className="w-4 h-4 rotate-90" />
+                  </button>
+                  <button onClick={() => scroll('right')} className="w-12 h-12 rounded-full border border-white/20 hover:border-[#C6A87C] hover:text-[#C6A87C] flex items-center justify-center transition-all duration-300 active:scale-95">
+                     <ArrowDownIcon className="w-4 h-4 -rotate-90" />
+                  </button>
+               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-               {/* Certificates */}
-               {product.certificates?.map((cert, i) => (
-                  <ScrollReveal key={`cert-${i}`} animation="fade-up" delay={i * 100}>
-                     <div className="group cursor-zoom-in">
-                        <div className="aspect-[3/4] overflow-hidden bg-white/5 mb-4 relative">
-                           <img src={cert} alt="Certificate" className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
-                           <div className="absolute inset-0 bg-[#C6A87C]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                              <span className="text-white text-xs tracking-widest uppercase border border-white px-4 py-2">View</span>
-                           </div>
-                        </div>
-                        <p className="text-xs text-center text-[#8A8885] tracking-widest uppercase">Qualification</p>
-                     </div>
-                  </ScrollReveal>
-               ))}
+            {/* Slider Container */}
+            <div 
+               ref={scrollContainerRef}
+               className="flex gap-8 overflow-x-auto pb-8 snap-x snap-mandatory no-scrollbar cursor-grab active:cursor-grabbing"
+               style={{ scrollBehavior: 'smooth' }}
+            >
+               {galleryItems.length > 0 ? (
+                 galleryItems.map((item, i) => (
+                    <div key={i} className="flex-none w-[280px] md:w-[320px] snap-start group select-none">
+                       <ScrollReveal animation="fade-up" delay={i * 50} className="h-full">
+                         <div className="relative aspect-[3/4] overflow-hidden bg-white/5 mb-6 border border-white/5 transition-all duration-500 group-hover:border-[#C6A87C]/50">
+                            <img 
+                              src={item.image} 
+                              alt={item.title} 
+                              className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-500" 
+                              draggable={false}
+                            />
+                            {/* Overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
+                            
+                            {/* Zoom Icon Hint */}
+                            <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
+                               <div className="w-4 h-4 border border-white/60 rounded-full"></div>
+                            </div>
+                         </div>
+                         
+                         <div className="pl-2 border-l border-[#C6A87C] transition-all duration-300 group-hover:pl-4">
+                            <p className="text-[#C6A87C] text-[10px] tracking-[0.2em] uppercase mb-1">{item.type}</p>
+                            <h4 className="serif text-lg text-[#E5E5E5] group-hover:text-white transition-colors">{item.title}</h4>
+                         </div>
+                       </ScrollReveal>
+                    </div>
+                 ))
+               ) : (
+                  <div className="w-full text-center py-10 text-white/30 text-sm tracking-widest">
+                     暂无相关报告
+                  </div>
+               )}
                
-               {/* Reports */}
-               {product.reports?.map((report, i) => (
-                  <ScrollReveal key={`rep-${i}`} animation="fade-up" delay={(product.certificates?.length || 0) * 100 + i * 100}>
-                     <div className="group cursor-zoom-in">
-                        <div className="aspect-[3/4] overflow-hidden bg-white/5 mb-4 relative">
-                           <img src={report.image} alt={report.title} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
-                            <div className="absolute inset-0 bg-[#C6A87C]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                              <span className="text-white text-xs tracking-widest uppercase border border-white px-4 py-2">View</span>
-                           </div>
-                        </div>
-                        <p className="text-xs text-center text-[#8A8885] tracking-widest uppercase">{report.title}</p>
-                     </div>
-                  </ScrollReveal>
-               ))}
+               {/* Padding Right for scroll feeling */}
+               <div className="w-12 shrink-0"></div>
             </div>
          </div>
       </section>

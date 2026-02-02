@@ -29,6 +29,7 @@ export interface ProductData {
   certificates?: string[]; // URLs to certificate images
   reports?: { title: string; image: string }[];
   detailedFeatures?: { title: string; text: string }[];
+  usageMethods?: { title: string; description: string }[];
 }
 
 export interface NewsItem {

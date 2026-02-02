@@ -20,7 +20,15 @@ export const products: ProductData[] = [
       { title: '营养峰值', text: '严格遵循生物钟，在孢子成熟前的营养黄金期进行人工采挖，确保腺苷等活性成分含量最高。' },
       { title: '深度洁净', text: '采用专业低温清洁技术，去除泥沙杂质的同时，完整保留虫草表面的天然菌膜。' }
     ],
+    usageMethods: [
+      { title: '清茶静泡', description: '取1-3根洗净，放入杯中，冲入80℃左右开水，静置片刻即可饮用，可反复冲泡至味淡，最后嚼食。' },
+      { title: '原盅炖汤', description: '与老鸭、乌鸡或乳鸽同炖，小火慢炖2小时以上，汤清味醇，最能激发其滋补功效。' },
+      { title: '精细打粉', description: '将虫草低温烘干后研磨成极细粉末，每日早晚取0.5-1g温水送服，吸收更直接。' }
+    ],
     certificates: [
+      'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=600&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=600&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=600&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=600&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=600&auto=format&fit=crop'
     ],
@@ -47,6 +55,11 @@ export const products: ProductData[] = [
       { title: '天然弱碱性', text: 'PH值7.3-7.8，富含多种对人体有益的微量元素，天然小分子团更易吸收。' },
       { title: '古老水源', text: '冰川形成于万年前，封存了史前的纯净记忆，未受现代工业任何污染。' },
       { title: '原产地灌装', text: '坚持在水源地直接建厂灌装，杜绝二次污染，锁住第一口鲜活。' }
+    ],
+    usageMethods: [
+      { title: '每日悦饮', description: '常温或冷藏饮用皆宜，口感甘冽清爽，快速补充身体所需水分与微量元素。' },
+      { title: '高端茗茶', description: '好水配好茶。7100冰川水为天然软水，更能激发茶叶的香气与汤色，茶汤更显醇厚。' },
+      { title: '母婴膳食', description: '低钠弱碱，分子团小，非常适合冲泡奶粉或烹饪婴儿辅食，呵护娇嫩肠胃。' }
     ],
     certificates: [
         'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=600&auto=format&fit=crop',
@@ -75,6 +88,11 @@ export const products: ProductData[] = [
       { title: '极速锁鲜', text: '采摘后6小时内完成预冷处理，全程冷链，保留刚出土时的鲜甜与浓郁香气。' },
       { title: '严苛筛选', text: '只要形状完美、无虫眼的松茸，百里挑一，只为呈现顶级品质。' }
     ],
+    usageMethods: [
+      { title: '黄油香煎', description: '最经典的吃法。切片后用黄油小火慢煎至两面金黄，撒少许海盐即可，奶香与菌香交织。' },
+      { title: '刺身生食', description: '顶级品质的鲜松茸洗净切片，搭配刺身酱油与芥末，口感脆嫩，感受山野的原始鲜甜。' },
+      { title: '松茸鸡汤', description: '土鸡炖至八成熟时加入松茸片，继续炖煮20分钟，汤色金黄，鲜美无比。' }
+    ],
     certificates: [
         'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=600&auto=format&fit=crop'
     ],
@@ -100,6 +118,11 @@ export const products: ProductData[] = [
       { title: '野外放养', text: '终日随性奔跑于山林之间，运动量大，体脂率极低，皮薄肉紧，口感劲道。' },
       { title: '天然食谱', text: '以林间野果、冬虫夏草、人参果等天然植物为食，饮用山涧清泉，肉质自带清香。' },
       { title: '营养宝库', text: '富含19种氨基酸，亚油酸含量高，胆固醇含量低，是真正健康的“人参猪”。' }
+    ],
+    usageMethods: [
+      { title: '白切原味', description: '清水煮熟切片，蘸取秘制蘸水。最能体现藏香猪皮脆肉嫩、肥而不腻的特点。' },
+      { title: '藏式烧烤', description: '切块腌制后炭火烤制，外皮焦香酥脆，肉质劲道多汁，风味独特。' },
+      { title: '红烧焖煮', description: '小火慢炖，肉质紧实不柴，油脂在烹饪中化为醇香，入口即化，回味无穷。' }
     ],
     certificates: [
         'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=600&auto=format&fit=crop',

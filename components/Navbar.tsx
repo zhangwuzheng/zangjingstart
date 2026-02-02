@@ -4,7 +4,6 @@ import { MenuIcon, CloseIcon } from './Icons';
 
 const navItems: NavItem[] = [
   { label: '品牌定位', id: 'brand', type: 'link' },
-  { label: '品质基石', id: 'quality', type: 'link' },
   { label: '核心产品', id: 'products', type: 'link' },
   { label: '新闻动态', id: 'news', type: 'action' },
   { label: '藏境文旅', id: 'travel', type: 'action' }, // Moved after News

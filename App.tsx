@@ -10,6 +10,7 @@ import { NoiseOverlay } from './components/NoiseOverlay';
 import { ProductDetail } from './components/ProductDetail';
 import { NewsPage } from './components/NewsPage';
 import { TravelPage } from './components/TravelPage';
+import { ServiceChannels } from './components/ServiceChannels';
 import { products } from './data';
 
 // Simple View Types
@@ -80,6 +81,7 @@ function App() {
         <Quality />
         <Competency />
         <Products onProductClick={handleProductClick} />
+        <ServiceChannels />
         
         {/* Visual Transition Section */}
         <section className="py-32 bg-[#1A1918] relative overflow-hidden">

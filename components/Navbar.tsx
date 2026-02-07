@@ -41,10 +41,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
     
     if (item.type === 'external' && item.href) {
         setIsMobileMenuOpen(false);
-        // In a real app, this might be a router push or an anchor tag
-        // For this demo, we assume placeholder links
-        console.log(`Navigating to external: ${item.href}`);
-        // window.location.href = item.href; 
+        // Open external links in a new tab with security best practices
+        window.open(item.href, '_blank', 'noopener,noreferrer');
         return;
     }
 

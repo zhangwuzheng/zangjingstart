@@ -168,7 +168,7 @@ export const products: ProductData[] = [
     accentColor: 'text-[#6B8E6B]',
     features: ['野生溯源', '新鲜度锁鲜技术', '地理标志认证'],
     origin: '西藏林芝原始森林',
-    originImage: 'https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=1600&auto=format&fit=crop', // Deep Forest
+    originImage: 'https://5b0988e595225.cdn.sohucs.com/images/20200331/4c3359cc12ef4e929f0b745983084174.jpeg', // Deep Forest
     variants: [
         '5-7cm (标准装) - 1kg',
         '7-9cm (优选装) - 1kg',
@@ -239,7 +239,7 @@ export const products: ProductData[] = [
     accentColor: 'text-[#A65D57]', // Muted earthy red
     features: ['林间散养', '生长周期长', '氨基酸丰富'],
     origin: '西藏林芝/山南地区，高海拔林间散养基地',
-    originImage: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1600&auto=format&fit=crop', // Meadow/Valley
+    originImage: 'https://bkimg.cdn.bcebos.com/pic/21a4462309f790522d3c0ebc00f3d7ca7bcbd515', // Meadow/Valley
     variants: [
         '五花肉 500g / 真空装',
         '排骨 500g / 真空装',

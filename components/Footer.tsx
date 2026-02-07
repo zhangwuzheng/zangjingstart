@@ -124,11 +124,19 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Section: Links & Copyright */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-white/[0.05] pt-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 border-t border-white/[0.05] pt-8">
            <div>
               <h4 className="text-[#C6A87C] text-[9px] font-bold uppercase tracking-[0.2em] mb-3">联系我们</h4>
               <p className="text-xs mb-1 font-light tracking-wide text-[#B0AEA8]">西藏自治区拉萨市柳梧新区君泰国际C栋11楼</p>
               <p className="text-xs font-light tracking-wide text-[#B0AEA8]">zangjingtech@163.com</p>
+           </div>
+
+           <div className="md:text-center">
+              <h4 className="text-[#C6A87C] text-[9px] font-bold uppercase tracking-[0.2em] mb-3">实用工具</h4>
+              <div className="flex flex-col gap-1 text-xs font-light text-[#B0AEA8]">
+                 <a href="http://43.136.175.153:3000/" target="_blank" rel="noopener noreferrer" className="tracking-wide hover:text-[#C6A87C] transition-colors">扎塔奇规格工具</a>
+                 <a href="http://43.136.175.153:30001" target="_blank" rel="noopener noreferrer" className="tracking-wide hover:text-[#C6A87C] transition-colors">礼赠组合工具</a>
+              </div>
            </div>
            
            <div className="md:text-center">

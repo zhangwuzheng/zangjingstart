@@ -36,13 +36,13 @@ export const BrandStory: React.FC = () => {
           <div className="w-full md:w-7/12 pt-12 md:pl-12 relative">
             
             {/* Calligraphy Underlay Watermark */}
-            {/* Removed mix-blend-multiply as requested. Adjusted opacity to 25% and max-width to 700px. */}
-            <div className="absolute top-[-15%] right-[-10%] w-[90%] max-w-[700px] z-0 pointer-events-none opacity-25 select-none">
-                <Parallax speed={-0.05}>
+            {/* Adjusted: Fixed width constraints, removed negative positioning to prevent clipping */}
+            <div className="absolute top-0 right-0 w-[200px] md:w-[400px] z-0 pointer-events-none opacity-20 select-none">
+                <Parallax speed={-0.03}>
                     <img 
                         src="https://zangjingtech.oss-cn-chengdu.aliyuncs.com/ZANGJINGSTART/1770441397962.png" 
                         alt="Calligraphy" 
-                        className="w-full h-full object-contain transform rotate-3"
+                        className="w-full h-full object-contain"
                     />
                 </Parallax>
             </div>

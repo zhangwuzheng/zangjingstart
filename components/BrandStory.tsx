@@ -36,8 +36,8 @@ export const BrandStory: React.FC = () => {
           <div className="w-full md:w-7/12 pt-12 md:pl-12 relative">
             
             {/* Calligraphy Underlay Watermark */}
-            {/* Adjusted: Fixed width constraints, removed negative positioning to prevent clipping */}
-            <div className="absolute top-0 right-0 w-[200px] md:w-[400px] z-0 pointer-events-none opacity-20 select-none">
+            {/* Adjusted: Moved up on PC (md:-top-20) as requested */}
+            <div className="absolute top-0 md:-top-20 right-0 w-[200px] md:w-[350px] z-0 pointer-events-none opacity-20 select-none">
                 <Parallax speed={-0.03}>
                     <img 
                         src="https://zangjingtech.oss-cn-chengdu.aliyuncs.com/ZANGJINGSTART/1770441397962.png" 

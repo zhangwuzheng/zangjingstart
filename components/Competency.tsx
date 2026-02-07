@@ -8,7 +8,7 @@ export const Competency: React.FC = () => {
           <div className="flex flex-col md:flex-row gap-12 mb-20 items-end border-b border-[#D4D4D4] pb-10">
              <div className="md:w-1/3">
                 <ScrollReveal animation="fade-up">
-                  <h4 className="text-[#C6A87C] tracking-[0.3em] text-xs font-medium mb-4 uppercase">Competency</h4>
+                  <h4 className="text-[#C6A87C] tracking-[0.3em] text-xs font-medium mb-4 uppercase">核心实力</h4>
                   <h2 className="text-3xl md:text-4xl text-[#1A1918] serif font-light">实力筑基 · 核心能力</h2>
                 </ScrollReveal>
              </div>

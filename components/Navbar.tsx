@@ -4,7 +4,15 @@ import { MenuIcon, CloseIcon } from './Icons';
 
 const navItems: NavItem[] = [
   { label: '品牌定位', id: 'brand', type: 'link' },
-  { label: '核心产品', id: 'products', type: 'link' },
+  { 
+    label: '核心产品', 
+    id: 'products', 
+    type: 'link',
+    children: [
+        { label: '扎塔奇规格工具', id: 'tool-zataqi', type: 'external', href: 'http://43.136.175.153:3000/' },
+        { label: '礼赠组合工具', id: 'tool-gift', type: 'external', href: 'http://43.136.175.153:30001' },
+    ]
+  },
   { label: '新闻动态', id: 'news', type: 'action' },
   { label: '藏境文旅', id: 'travel', type: 'action' }, // Moved after News
   { label: '联系我们', id: 'footer', type: 'link' },
@@ -28,6 +36,18 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
   }, []);
 
   const handleNavClick = (item: NavItem) => {
+    // If it has children and we are on desktop, clicking the parent might just scroll (default behavior)
+    // On mobile, maybe toggle? For now, we allow clicking parent to navigate.
+    
+    if (item.type === 'external' && item.href) {
+        setIsMobileMenuOpen(false);
+        // In a real app, this might be a router push or an anchor tag
+        // For this demo, we assume placeholder links
+        console.log(`Navigating to external: ${item.href}`);
+        // window.location.href = item.href; 
+        return;
+    }
+
     setIsMobileMenuOpen(false);
     
     if (item.type === 'action') {
@@ -78,20 +98,41 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-10">
           {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => handleNavClick(item)}
-              className={`
-                text-xs tracking-[0.2em] uppercase transition-all duration-300 relative group py-2
-                ${item.id === 'travel' 
-                  ? 'text-[#C6A87C] font-bold text-sm' // Removed border, added bold/size
-                  : `${showBackground ? 'text-[#B0AEA8]' : 'text-white/80'} hover:text-[#C6A87C] font-medium`
-                }
-              `}
-            >
-              {item.label}
-              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[1px] bg-[#C6A87C] transition-all duration-300 group-hover:w-full w-0"></span>
-            </button>
+            <div key={item.id} className="relative group">
+                <button
+                onClick={() => handleNavClick(item)}
+                className={`
+                    text-xs tracking-[0.2em] uppercase transition-all duration-300 relative py-2 block
+                    ${item.id === 'travel' 
+                    ? 'text-[#C6A87C] font-bold text-sm' 
+                    : `${showBackground ? 'text-[#B0AEA8]' : 'text-white/80'} hover:text-[#C6A87C] font-medium`
+                    }
+                `}
+                >
+                {item.label}
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[1px] bg-[#C6A87C] transition-all duration-300 group-hover:w-full w-0"></span>
+                </button>
+
+                {/* Dropdown for Desktop */}
+                {item.children && (
+                    <div className="absolute left-1/2 -translate-x-1/2 top-full pt-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 w-48 z-50">
+                        <div className="bg-[#1A1918] border border-white/10 shadow-2xl flex flex-col py-2">
+                            {item.children.map(child => (
+                                <button
+                                    key={child.id}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleNavClick(child);
+                                    }}
+                                    className="text-left px-6 py-3 text-[10px] text-[#B0AEA8] hover:text-[#C6A87C] hover:bg-white/5 transition-colors tracking-widest uppercase"
+                                >
+                                    {child.label}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </div>
           ))}
         </div>
 
@@ -106,18 +147,36 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentView }) => {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-[#1A1918]/95 backdrop-blur-xl border-t border-white/10 p-6 flex flex-col gap-6 h-screen">
+        <div className="md:hidden absolute top-full left-0 w-full bg-[#1A1918]/95 backdrop-blur-xl border-t border-white/10 p-6 flex flex-col gap-6 h-screen overflow-y-auto pb-20">
           {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => handleNavClick(item)}
-              className={`
-                text-lg tracking-widest text-left py-4 border-b border-white/5 font-serif font-light
-                ${item.id === 'travel' ? 'text-[#C6A87C] font-normal' : 'text-[#E5E5E5] hover:text-[#C6A87C]'}
-              `}
-            >
-              {item.label}
-            </button>
+            <div key={item.id} className="w-full">
+                <button
+                onClick={() => handleNavClick(item)}
+                className={`
+                    w-full text-lg tracking-widest text-left py-4 border-b border-white/5 font-serif font-light
+                    ${item.id === 'travel' ? 'text-[#C6A87C] font-normal' : 'text-[#E5E5E5] hover:text-[#C6A87C]'}
+                `}
+                >
+                {item.label}
+                </button>
+                {/* Mobile Nested Items */}
+                {item.children && (
+                    <div className="pl-4 flex flex-col mt-2 border-l border-white/10 ml-2">
+                        {item.children.map(child => (
+                             <button
+                                key={child.id}
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleNavClick(child);
+                                }}
+                                className="text-sm text-[#B0AEA8] hover:text-[#C6A87C] py-3 text-left tracking-widest font-light"
+                             >
+                                {child.label}
+                             </button>
+                        ))}
+                    </div>
+                )}
+            </div>
           ))}
         </div>
       )}

@@ -8,7 +8,7 @@ export const ServiceChannels: React.FC = () => {
       <div className="container mx-auto px-6 relative z-10">
         <ScrollReveal animation="fade-up">
           <div className="text-center mb-20">
-            <h4 className="text-[#C6A87C] tracking-[0.4em] text-xs font-medium mb-6 uppercase">Service Guarantee</h4>
+            <h4 className="text-[#C6A87C] tracking-[0.4em] text-xs font-medium mb-6 uppercase">服务保障</h4>
             <h2 className="text-3xl md:text-5xl text-[#F2F0EB] serif font-light tracking-wide">全渠道尊享 · 交付无忧</h2>
           </div>
         </ScrollReveal>

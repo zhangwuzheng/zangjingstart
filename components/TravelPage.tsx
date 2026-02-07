@@ -24,9 +24,9 @@ export const TravelPage: React.FC<TravelPageProps> = ({ onBack }) => {
           <div className="w-8 h-8 border border-[#1A1918]/30 rounded-full flex items-center justify-center group-hover:bg-[#1A1918] group-hover:text-white transition-all duration-300">
              <ArrowDownIcon className="w-3 h-3 rotate-90" />
           </div>
-          <span className="text-xs uppercase tracking-[0.2em] font-medium">Home</span>
+          <span className="text-xs uppercase tracking-[0.2em] font-medium">首页</span>
         </button>
-        <span className="text-[#C6A87C] text-xs tracking-[0.3em] uppercase">Culture & Travel</span>
+        <span className="text-[#C6A87C] text-xs tracking-[0.3em] uppercase">文化之旅</span>
       </div>
 
       {/* Hero Section */}
@@ -47,7 +47,7 @@ export const TravelPage: React.FC<TravelPageProps> = ({ onBack }) => {
             <ScrollReveal animation="fade-up">
                 <div className="flex items-center justify-center gap-4 mb-8">
                     <span className="h-[1px] w-12 bg-[#C6A87C]"></span>
-                    <span className="text-[#C6A87C] tracking-[0.5em] text-xs uppercase">Zang Jing Travel</span>
+                    <span className="text-[#C6A87C] tracking-[0.5em] text-xs uppercase">藏境文旅</span>
                     <span className="h-[1px] w-12 bg-[#C6A87C]"></span>
                 </div>
                 <h1 className="text-5xl md:text-8xl serif font-light mb-8 tracking-wide">问道川藏<br/><span className="text-3xl md:text-5xl italic opacity-80 mt-4 block">寻觅雪域秘境</span></h1>
@@ -64,7 +64,7 @@ export const TravelPage: React.FC<TravelPageProps> = ({ onBack }) => {
         <div className="flex flex-col md:flex-row items-center gap-20">
             <div className="md:w-1/2">
                 <ScrollReveal animation="fade-up">
-                    <h3 className="text-[#C6A87C] text-xs font-bold uppercase tracking-[0.2em] mb-4">The Origin</h3>
+                    <h3 className="text-[#C6A87C] text-xs font-bold uppercase tracking-[0.2em] mb-4">旅程起点</h3>
                     <h2 className="text-4xl md:text-5xl serif text-[#1A1918] mb-8 leading-tight">起点：成都熊猫谷<br/><span className="text-2xl text-[#8A8885] italic font-light">竹林掩映下的始发站</span></h2>
                     <p className="text-[#5E5C58] leading-loose text-justify font-light mb-8">
                         旅程从天府之国的都江堰熊猫谷开启。在这里，您将首先感受到川西平原的温润与生机。我们在熊猫谷设有专属接待中心，为您提供行前说明会、装备检查及车辆交付服务。在出发前，与国宝大熊猫来一场亲密邂逅，为这段高原朝圣之旅注入治愈的力量。
@@ -74,7 +74,7 @@ export const TravelPage: React.FC<TravelPageProps> = ({ onBack }) => {
                              <MapPinIcon className="w-4 h-4 text-[#C6A87C]" /> 成都都江堰
                         </div>
                         <div className="flex items-center gap-2 text-xs text-[#1A1918] tracking-widest uppercase border border-[#E5E0D6] px-4 py-2">
-                             <span className="text-[#C6A87C] text-lg leading-none">0</span> km 起始点
+                             <span className="text-[#C6A87C] text-lg leading-none">0</span> km 起始站
                         </div>
                     </div>
                 </ScrollReveal>
@@ -115,7 +115,7 @@ export const TravelPage: React.FC<TravelPageProps> = ({ onBack }) => {
          <div className="container mx-auto px-6 relative z-10">
             <ScrollReveal animation="fade-up">
                 <div className="text-center mb-32">
-                    <h4 className="text-[#C6A87C] tracking-[0.4em] text-xs font-medium uppercase mb-4">The Ascent</h4>
+                    <h4 className="text-[#C6A87C] tracking-[0.4em] text-xs font-medium uppercase mb-4">海拔攀升</h4>
                     <h2 className="text-4xl md:text-5xl serif font-light">云端天路 · 海拔攀升</h2>
                     <p className="text-[#8A8885] mt-6 font-light">从天府盆地到雪域高原，每一步都是修行</p>
                 </div>
@@ -130,7 +130,7 @@ export const TravelPage: React.FC<TravelPageProps> = ({ onBack }) => {
                     <div className="md:w-5/12 text-center md:text-right order-2 md:order-1 px-6">
                         <ScrollReveal animation="slide-in-left">
                            <h3 className="text-2xl serif text-[#E5E5E5] group-hover:text-[#C6A87C] transition-colors">成都 / 熊猫谷</h3>
-                           <p className="text-xs text-[#8A8885] uppercase tracking-widest mt-2">Starting Point</p>
+                           <p className="text-xs text-[#8A8885] uppercase tracking-widest mt-2">起始站</p>
                            <p className="text-sm text-[#999] mt-4 font-light leading-relaxed">温润湿润的盆地气候，翠竹环绕，开启进藏前的最后一次深呼吸。</p>
                         </ScrollReveal>
                     </div>
@@ -153,7 +153,7 @@ export const TravelPage: React.FC<TravelPageProps> = ({ onBack }) => {
                     <div className="md:w-5/12 text-center md:text-left order-2 md:order-3 px-6">
                         <ScrollReveal animation="slide-in-right">
                            <h3 className="text-2xl serif text-[#E5E5E5] group-hover:text-[#C6A87C] transition-colors">康定</h3>
-                           <p className="text-xs text-[#8A8885] uppercase tracking-widest mt-2">Gateway to Xizang</p>
+                           <p className="text-xs text-[#8A8885] uppercase tracking-widest mt-2">西藏门户</p>
                            <p className="text-sm text-[#999] mt-4 font-light leading-relaxed">溜溜城下，折多山前。汉藏文化交汇之地，翻过此山，便是真正的高原。</p>
                         </ScrollReveal>
                     </div>
@@ -164,7 +164,7 @@ export const TravelPage: React.FC<TravelPageProps> = ({ onBack }) => {
                     <div className="md:w-5/12 text-center md:text-right order-2 md:order-1 px-6">
                         <ScrollReveal animation="slide-in-left">
                            <h3 className="text-2xl serif text-[#E5E5E5] group-hover:text-[#C6A87C] transition-colors">理塘</h3>
-                           <p className="text-xs text-[#8A8885] uppercase tracking-widest mt-2">Sky City</p>
+                           <p className="text-xs text-[#8A8885] uppercase tracking-widest mt-2">天空之城</p>
                            <p className="text-sm text-[#999] mt-4 font-light leading-relaxed">世界高城，天空之城。在4000米海拔拥抱长青春科尔寺的恢弘。</p>
                         </ScrollReveal>
                     </div>
@@ -187,7 +187,7 @@ export const TravelPage: React.FC<TravelPageProps> = ({ onBack }) => {
                     <div className="md:w-5/12 text-center md:text-left order-2 md:order-3 px-6">
                         <ScrollReveal animation="slide-in-right">
                            <h3 className="text-2xl serif text-[#E5E5E5] group-hover:text-[#C6A87C] transition-colors">林芝</h3>
-                           <p className="text-xs text-[#8A8885] uppercase tracking-widest mt-2">Xizang Switzerland</p>
+                           <p className="text-xs text-[#8A8885] uppercase tracking-widest mt-2">西藏江南</p>
                            <p className="text-sm text-[#999] mt-4 font-light leading-relaxed">雪域江南，氧气充足。漫步鲁朗林海，看南迦巴瓦峰日照金山。</p>
                         </ScrollReveal>
                     </div>
@@ -198,7 +198,7 @@ export const TravelPage: React.FC<TravelPageProps> = ({ onBack }) => {
                     <div className="md:w-5/12 text-center md:text-right order-2 md:order-1 px-6">
                         <ScrollReveal animation="slide-in-left">
                            <h3 className="text-2xl serif text-[#E5E5E5] group-hover:text-[#C6A87C] transition-colors">拉萨</h3>
-                           <p className="text-xs text-[#8A8885] uppercase tracking-widest mt-2">Holy City</p>
+                           <p className="text-xs text-[#8A8885] uppercase tracking-widest mt-2">圣城</p>
                            <p className="text-sm text-[#999] mt-4 font-light leading-relaxed">日光之城，信仰终点。在布达拉宫脚下，完成身体与灵魂的朝圣。</p>
                         </ScrollReveal>
                     </div>
@@ -220,7 +220,7 @@ export const TravelPage: React.FC<TravelPageProps> = ({ onBack }) => {
            <ScrollReveal animation="fade-up">
               <div className="flex flex-col md:flex-row justify-between items-end mb-16">
                  <div>
-                    <h4 className="text-[#C6A87C] tracking-[0.3em] text-xs font-medium uppercase mb-4">Cultural Immersion</h4>
+                    <h4 className="text-[#C6A87C] tracking-[0.3em] text-xs font-medium uppercase mb-4">文化沉浸</h4>
                     <h2 className="text-3xl md:text-4xl text-[#F2F0EB] serif font-light">非遗 · 匠心体验</h2>
                  </div>
                  <p className="text-[#8A8885] text-sm max-w-md text-right font-light mt-4 md:mt-0">
@@ -303,7 +303,7 @@ export const TravelPage: React.FC<TravelPageProps> = ({ onBack }) => {
                                 </p>
 
                                 <div className="space-y-4">
-                                    <div className="text-xs uppercase tracking-widest text-[#555] mb-2">Key Stops</div>
+                                    <div className="text-xs uppercase tracking-widest text-[#555] mb-2">经典站点</div>
                                     <div className="flex flex-wrap gap-2">
                                         {route.stops.map((stop, i) => (
                                             <span key={i} className="text-[10px] border border-white/20 px-2 py-1 text-[#B0AEA8]">{stop}</span>
@@ -322,7 +322,7 @@ export const TravelPage: React.FC<TravelPageProps> = ({ onBack }) => {
       <section className="py-32 bg-[#F5F2EB]">
          <div className="container mx-auto px-6">
             <div className="mb-20">
-                <h4 className="text-[#C6A87C] tracking-[0.3em] text-xs font-medium uppercase mb-4">Premium Services</h4>
+                <h4 className="text-[#C6A87C] tracking-[0.3em] text-xs font-medium uppercase mb-4">定制服务</h4>
                 <h2 className="text-3xl md:text-5xl text-[#1A1918] serif font-light">全境守护 · 定制私享</h2>
             </div>
 
@@ -375,7 +375,7 @@ export const TravelPage: React.FC<TravelPageProps> = ({ onBack }) => {
             <div className="flex flex-col md:flex-row items-center gap-20">
                 <div className="w-full md:w-1/2 order-2 md:order-1">
                     <ScrollReveal animation="slide-in-left">
-                        <h4 className="text-[#C6A87C] tracking-[0.3em] text-xs font-medium uppercase mb-4">Digital Companion</h4>
+                        <h4 className="text-[#C6A87C] tracking-[0.3em] text-xs font-medium uppercase mb-4">数字伴侣</h4>
                         <h2 className="text-4xl md:text-5xl text-[#1A1918] serif font-light mb-8">藏境文旅 APP<br/><span className="text-2xl text-[#8A8885] italic font-light">科技赋能 · 人文随行</span></h2>
                         <p className="text-[#5E5C58] leading-loose mb-10 font-light text-justify">
                             这不仅仅是一个工具，更是您的智能旅行管家。我们将复杂的行程管理隐入后台，通过科技手段实时响应您的需求。从海拔适应性监测到私享营地的静谧预约，让每一次探索都从容不迫，让科技的温度温暖您的朝圣之路。
@@ -438,19 +438,19 @@ export const TravelPage: React.FC<TravelPageProps> = ({ onBack }) => {
                             <div className="absolute bottom-0 left-0 w-full p-6">
                                 <div className="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/10 mb-4">
                                     <div className="flex justify-between items-center mb-2">
-                                        <span className="text-[10px] text-[#C6A87C] uppercase tracking-widest">Reservation</span>
-                                        <span className="text-[10px] text-white bg-[#C6A87C] px-2 py-0.5 rounded-full">Confirmed</span>
+                                        <span className="text-[10px] text-[#C6A87C] uppercase tracking-widest">预订</span>
+                                        <span className="text-[10px] text-white bg-[#C6A87C] px-2 py-0.5 rounded-full">已确认</span>
                                     </div>
-                                    <h3 className="text-white serif text-lg">Songtsam Linka Retreat</h3>
-                                    <p className="text-white/60 text-xs">3 Nights · Glacial View Villa</p>
+                                    <h3 className="text-white serif text-lg">松赞林卡度假村</h3>
+                                    <p className="text-white/60 text-xs">3晚 · 冰川景观别墅</p>
                                 </div>
                                  <div className="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/10">
                                     <div className="flex justify-between items-center mb-2">
-                                        <span className="text-[10px] text-[#C6A87C] uppercase tracking-widest">Vehicle</span>
-                                        <span className="text-[10px] text-white/50">Arriving in 15m</span>
+                                        <span className="text-[10px] text-[#C6A87C] uppercase tracking-widest">车辆</span>
+                                        <span className="text-[10px] text-white/50">15分钟后到达</span>
                                     </div>
-                                    <h3 className="text-white serif text-lg">Land Cruiser LC300</h3>
-                                    <p className="text-white/60 text-xs">Lhasa - Nyingchi Route</p>
+                                    <h3 className="text-white serif text-lg">陆地巡洋舰 LC300</h3>
+                                    <p className="text-white/60 text-xs">拉萨 - 林芝 专线</p>
                                 </div>
                             </div>
                         </div>

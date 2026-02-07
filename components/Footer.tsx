@@ -26,7 +26,7 @@ export const Footer: React.FC = () => {
            
            <div className="text-center md:text-right">
               <p className="serif text-lg text-[#E5E5E5] mb-1 font-light tracking-widest">山有藏珍 水至净境</p>
-              <p className="text-[8px] tracking-[0.2em] uppercase opacity-50">High-End Xizang Specialty Brand</p>
+              <p className="text-[8px] tracking-[0.2em] uppercase opacity-50">西藏高端特产品牌</p>
            </div>
         </div>
 
@@ -36,7 +36,7 @@ export const Footer: React.FC = () => {
            {/* Left: Online Channels & QR Codes */}
            <ScrollReveal animation="fade-up">
              <div>
-                <h4 className="text-[#C6A87C] text-[9px] font-bold uppercase tracking-[0.2em] mb-6">Official Channels</h4>
+                <h4 className="text-[#C6A87C] text-[9px] font-bold uppercase tracking-[0.2em] mb-6">官方渠道</h4>
                 <div className="grid grid-cols-4 gap-4 relative">
                     {/* Official Mini Program */}
                     <div className="group text-center hover:z-50 relative transition-all duration-300">
@@ -89,7 +89,7 @@ export const Footer: React.FC = () => {
            {/* Right: Offline Locations */}
            <ScrollReveal animation="fade-up" delay={100}>
              <div>
-                <h4 className="text-[#C6A87C] text-[9px] font-bold uppercase tracking-[0.2em] mb-6">Boutiques</h4>
+                <h4 className="text-[#C6A87C] text-[9px] font-bold uppercase tracking-[0.2em] mb-6">线下门店</h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="flex gap-4 group">
                         <div className="mt-1 text-[#C6A87C] group-hover:scale-110 transition-transform"><StoreIcon className="w-5 h-5" /></div>
@@ -100,7 +100,7 @@ export const Footer: React.FC = () => {
                                 布达拉宫广场东侧精品廊 1-03
                             </p>
                             <div className="flex items-center gap-2 text-[8px] text-[#C6A87C] tracking-widest uppercase">
-                                <span className="flex items-center gap-1"><ClockIcon className="w-2.5 h-2.5" /> Daily 10:00 - 22:00</span>
+                                <span className="flex items-center gap-1"><ClockIcon className="w-2.5 h-2.5" /> 每日 10:00 - 22:00</span>
                             </div>
                         </div>
                     </div>
@@ -114,7 +114,7 @@ export const Footer: React.FC = () => {
                                 远洋太古里 L2-2213
                             </p>
                             <div className="flex items-center gap-2 text-[8px] text-[#C6A87C] tracking-widest uppercase">
-                                <span className="flex items-center gap-1"><ClockIcon className="w-2.5 h-2.5" /> Daily 10:00 - 22:00</span>
+                                <span className="flex items-center gap-1"><ClockIcon className="w-2.5 h-2.5" /> 每日 10:00 - 22:00</span>
                             </div>
                         </div>
                     </div>
@@ -126,13 +126,13 @@ export const Footer: React.FC = () => {
         {/* Bottom Section: Links & Copyright */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-white/[0.05] pt-8">
            <div>
-              <h4 className="text-[#C6A87C] text-[9px] font-bold uppercase tracking-[0.2em] mb-3">Contact</h4>
+              <h4 className="text-[#C6A87C] text-[9px] font-bold uppercase tracking-[0.2em] mb-3">联系我们</h4>
               <p className="text-xs mb-1 font-light tracking-wide text-[#B0AEA8]">西藏自治区拉萨市柳梧新区君泰国际C栋11楼</p>
               <p className="text-xs font-light tracking-wide text-[#B0AEA8]">zangjingtech@163.com</p>
            </div>
            
            <div className="md:text-center">
-              <h4 className="text-[#C6A87C] text-[9px] font-bold uppercase tracking-[0.2em] mb-3">Promise</h4>
+              <h4 className="text-[#C6A87C] text-[9px] font-bold uppercase tracking-[0.2em] mb-3">品牌承诺</h4>
               <div className="flex flex-col gap-1 text-xs font-light text-[#B0AEA8]">
                  <span className="tracking-wide">区块链溯源保真</span>
                  <span className="tracking-wide">新鲜高效直达</span>

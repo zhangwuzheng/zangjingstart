@@ -16,7 +16,7 @@ export const Products: React.FC<ProductsProps> = ({ onProductClick }) => {
          <ScrollReveal animation="fade-up">
            <div className="flex justify-center items-center gap-4 mb-6">
               <span className="w-12 h-[1px] bg-[#C6A87C]"></span>
-              <h4 className="text-[#C6A87C] tracking-[0.3em] text-xs font-medium uppercase">Collection</h4>
+              <h4 className="text-[#C6A87C] tracking-[0.3em] text-xs font-medium uppercase">珍选系列</h4>
               <span className="w-12 h-[1px] bg-[#C6A87C]"></span>
            </div>
            <h2 className="text-4xl md:text-5xl text-[#1A1918] serif font-light tracking-wide">雪域珍选 · 核心产品</h2>
@@ -51,7 +51,7 @@ export const Products: React.FC<ProductsProps> = ({ onProductClick }) => {
                </div>
                
                <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <span className="text-white border border-white px-8 py-3 tracking-[0.3em] uppercase text-xs backdrop-blur-sm">View Details</span>
+                  <span className="text-white border border-white px-8 py-3 tracking-[0.3em] uppercase text-xs backdrop-blur-sm">查看详情</span>
                </div>
             </div>
 
@@ -83,8 +83,22 @@ export const Products: React.FC<ProductsProps> = ({ onProductClick }) => {
                       {product.narrative}
                     </p>
 
+                    {/* Geographical Indication Images - Size increased to h-20 (approx 80px) */}
+                    {product.giImages && product.giImages.length > 0 && (
+                        <div className="flex flex-wrap gap-4 mb-10 items-center">
+                            {product.giImages.map((img, i) => (
+                                <img 
+                                    key={i} 
+                                    src={img} 
+                                    alt="Geographical Indication" 
+                                    className="h-20 w-auto object-contain hover:scale-105 transition-all duration-300" 
+                                />
+                            ))}
+                        </div>
+                    )}
+
                     <div className="mb-10">
-                       <h5 className="text-[#1A1918] serif text-lg mb-4">Highlights</h5>
+                       <h5 className="text-[#1A1918] serif text-lg mb-4">核心亮点</h5>
                        <ul className="space-y-3">
                          {product.features.map((feature, i) => (
                            <li key={i} className="flex items-center gap-3 text-xs text-[#8A8885] tracking-wide uppercase">
@@ -99,7 +113,7 @@ export const Products: React.FC<ProductsProps> = ({ onProductClick }) => {
                       onClick={() => onProductClick(product.id)}
                       className="px-10 py-4 border border-[#1A1918] text-[#1A1918] text-xs tracking-[0.2em] hover:bg-[#1A1918] hover:text-white transition-all duration-500 uppercase"
                     >
-                      Discover More
+                      探索更多
                     </button>
                   </ScrollReveal>
                </div>

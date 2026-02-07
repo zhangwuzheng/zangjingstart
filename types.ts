@@ -3,7 +3,9 @@ import React from 'react';
 export interface NavItem {
   label: string;
   id: string;
-  type?: 'link' | 'action'; // link scrolls, action navigates
+  type?: 'link' | 'action' | 'external'; // link scrolls, action navigates, external opens href
+  href?: string;
+  children?: NavItem[];
 }
 
 export interface Feature {
@@ -25,14 +27,17 @@ export interface ProductData {
   // New detailed fields
   detailImage?: string; // Larger or different image for detail page
   origin?: string;
-  specs?: string;
+  originImage?: string; // Background image for the origin section
+  variants?: string[]; // Renamed from specs to variants, now an array for multiple options
   certificates?: string[]; // URLs to certificate images
   reports?: { title: string; image: string }[];
-  detailedFeatures?: { title: string; text: string }[];
-  usageMethods?: { title: string; description: string }[];
+  // Updated interfaces to support images per item
+  detailedFeatures?: { title: string; text: string; image?: string }[];
+  usageMethods?: { title: string; description: string; image?: string }[];
   // Newly added for "Rich Content"
   detailedSpecs?: { label: string; value: string }[];
   qna?: { question: string; answer: string }[];
+  giImages?: string[];
 }
 
 export interface NewsItem {

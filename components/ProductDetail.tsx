@@ -1,8 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ProductData } from '../types';
-import { ArrowDownIcon } from './Icons';
+import { ArrowDownIcon, MapPinIcon, ShieldCheckIcon, LeafIcon, MountainIcon } from './Icons';
 import { ScrollReveal } from './ScrollReveal';
-import { Parallax } from './Parallax';
 
 interface ProductDetailProps {
   product: ProductData;
@@ -10,277 +9,263 @@ interface ProductDetailProps {
 }
 
 export const ProductDetail: React.FC<ProductDetailProps> = ({ product, onBack }) => {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [product]);
 
-  // Combine certificates and reports into one array for the slider
-  const galleryItems = [
-    ...(product.certificates || []).map(src => ({ type: 'Qualification', title: '资质认证', image: src })),
-    ...(product.reports || []).map(r => ({ type: 'Report', title: r.title, image: r.image }))
-  ];
-
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollContainerRef.current) {
-      const container = scrollContainerRef.current;
-      const scrollAmount = 340; // Card width + gap
-      const targetScroll = container.scrollLeft + (direction === 'left' ? -scrollAmount : scrollAmount);
-      
-      container.scrollTo({
-        left: targetScroll,
-        behavior: 'smooth'
-      });
-    }
-  };
-
   const toggleFaq = (index: number) => {
     setActiveFaq(activeFaq === index ? null : index);
   };
 
   return (
-    <div className="bg-[#FDFBF7] min-h-screen animate-fade-in-up selection:bg-[#C6A87C] selection:text-white">
-      {/* Navigation Bar Placeholder for Back Button */}
-      <div className="fixed top-0 left-0 w-full z-50 p-6 flex justify-between items-center mix-blend-difference text-white">
+    <div className="bg-white min-h-screen animate-fade-in-up selection:bg-[#1A1918] selection:text-white pb-32">
+      {/* 1. Navigation - Minimal & Sticky */}
+      <div className="fixed top-0 left-0 w-full z-50 px-6 py-6 flex justify-between items-center bg-white/80 backdrop-blur-md border-b border-gray-100">
         <button 
           onClick={onBack}
           className="flex items-center gap-2 group cursor-pointer"
         >
-          <div className="w-10 h-10 border border-white/30 rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all duration-300">
-             <ArrowDownIcon className="w-4 h-4 rotate-90" />
+          <div className="w-8 h-8 border border-gray-200 rounded-full flex items-center justify-center group-hover:bg-[#1A1918] group-hover:border-[#1A1918] group-hover:text-white transition-all duration-300">
+             <ArrowDownIcon className="w-3 h-3 rotate-90" />
           </div>
-          <span className="text-xs uppercase tracking-[0.2em] opacity-80 group-hover:opacity-100 transition-opacity">Back</span>
+          <span className="text-xs uppercase tracking-[0.2em] font-medium text-gray-500 group-hover:text-[#1A1918] transition-colors">返回</span>
         </button>
+        <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#1A1918] hidden md:block">{product.subName}</span>
       </div>
 
-      {/* Hero Section */}
-      <section className="relative h-[60vh] w-full overflow-hidden">
-        <div className="absolute inset-0">
-           <img src={product.detailImage || product.image} alt={product.name} className="w-full h-full object-cover" />
-           <div className="absolute inset-0 bg-black/40"></div>
-        </div>
-        
-        <div className="absolute inset-0 flex items-center justify-center text-center text-white z-10 px-6">
-           <div className="max-w-4xl">
-              <ScrollReveal animation="fade-up">
-                <span className={`block text-xs md:text-sm tracking-[0.4em] uppercase mb-6 ${product.accentColor.replace('text-', 'text-white/90 ')}`}>{product.subName}</span>
-                <h1 className="text-5xl md:text-7xl serif font-light mb-8 tracking-wide">{product.name}</h1>
-                <p className="text-lg md:text-xl font-light opacity-90 max-w-2xl mx-auto leading-relaxed">
-                   {product.narrative}
-                </p>
-              </ScrollReveal>
-           </div>
-        </div>
-      </section>
+      {/* 2. Hero Section: Split Screen Layout (Sticky Image) */}
+      <section className="relative pt-24 md:pt-32 px-6 container mx-auto mb-24">
+         <div className="flex flex-col md:flex-row gap-12 lg:gap-24">
+            
+            {/* Left Column: Product Image (Sticky) */}
+            <div className="w-full md:w-1/2 relative">
+               <div className="sticky top-32 h-[60vh] md:h-[80vh] bg-[#F9F9F9] rounded-sm overflow-hidden flex items-center justify-center p-8">
+                  <img 
+                    src={product.detailImage || product.image} 
+                    alt={product.name} 
+                    className="max-w-full max-h-full object-contain drop-shadow-2xl mix-blend-multiply" 
+                  />
+                  {/* Floating Highlight Tags */}
+                  <div className="absolute bottom-6 left-6 flex flex-col gap-2">
+                     {product.tags.slice(0, 2).map((tag, i) => (
+                        <span key={i} className="bg-white/90 backdrop-blur text-[10px] uppercase tracking-widest px-3 py-1 shadow-sm text-gray-600">{tag}</span>
+                     ))}
+                  </div>
+               </div>
+            </div>
 
-      {/* Basic Specs & Introduction */}
-      <section className="py-24 bg-white border-b border-[#E5E0D6]">
-         <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-            <div>
+            {/* Right Column: Product Details & Specs (Scrollable) */}
+            <div className="w-full md:w-1/2 flex flex-col justify-center">
                <ScrollReveal animation="fade-up">
-                   <h3 className="text-[#C6A87C] text-xs font-bold uppercase tracking-[0.2em] mb-4">Origin & Specs</h3>
-                   <h2 className="text-3xl serif text-[#1A1918] mb-8">产地与规格</h2>
-                   <div className="space-y-6 text-[#5E5C58]">
-                      <div>
-                         <span className="block text-xs text-[#8A8885] uppercase tracking-wider mb-2">产地 Source</span>
-                         <p className="serif text-xl text-[#1A1918]">{product.origin}</p>
-                      </div>
-                      <div>
-                         <span className="block text-xs text-[#8A8885] uppercase tracking-wider mb-2">规格 Specification</span>
-                         <p className="serif text-xl text-[#1A1918]">{product.specs}</p>
-                      </div>
-                      <div className="pt-6">
-                        <div className="flex flex-wrap gap-3">
-                            {product.tags.map((tag, i) => (
-                                <span key={i} className="px-5 py-2 border border-[#E5E0D6] text-[#5E5C58] text-xs tracking-widest uppercase">{tag}</span>
-                            ))}
-                        </div>
+                  <span className="text-[#C6A87C] text-xs font-bold uppercase tracking-[0.3em] mb-4 block">产品概览</span>
+                  <h1 className="text-4xl md:text-6xl serif text-[#1A1918] mb-6 font-light">{product.name}</h1>
+                  <p className="text-gray-500 text-sm md:text-base leading-loose font-light mb-10 text-justify">
+                     {product.narrative}
+                  </p>
+               </ScrollReveal>
+
+               {/* Variants Selection (The "Multiple Specs" requirement) */}
+               {product.variants && (
+                 <ScrollReveal animation="fade-up" delay={100}>
+                   <div className="mb-10 border-t border-b border-gray-100 py-8">
+                      <h3 className="text-xs font-bold uppercase tracking-[0.2em] mb-6 text-[#1A1918]">可选规格</h3>
+                      <div className="flex flex-col gap-3">
+                         {product.variants.map((variant, i) => (
+                           <div key={i} className="group flex items-center justify-between p-4 border border-gray-200 hover:border-[#1A1918] transition-all cursor-pointer">
+                              <span className="text-sm text-gray-700 font-medium group-hover:text-[#1A1918]">{variant}</span>
+                              <div className="w-4 h-4 rounded-full border border-gray-300 group-hover:bg-[#1A1918] group-hover:border-[#1A1918] transition-colors"></div>
+                           </div>
+                         ))}
                       </div>
                    </div>
+                 </ScrollReveal>
+               )}
+
+               {/* Quick Features */}
+               <ScrollReveal animation="fade-up" delay={200}>
+                   <div className="grid grid-cols-3 gap-4 mb-10">
+                      {product.features.map((feature, i) => (
+                         <div key={i} className="flex flex-col items-center text-center p-4 bg-gray-50">
+                            {i === 0 && <ShieldCheckIcon className="w-5 h-5 mb-2 text-[#C6A87C]" />}
+                            {i === 1 && <MountainIcon className="w-5 h-5 mb-2 text-[#C6A87C]" />}
+                            {i === 2 && <LeafIcon className="w-5 h-5 mb-2 text-[#C6A87C]" />}
+                            <span className="text-[10px] text-gray-600 uppercase tracking-wider">{feature}</span>
+                         </div>
+                      ))}
+                   </div>
                </ScrollReveal>
-            </div>
-            
-            {/* Detailed Specs Table (New) */}
-            <div className="bg-[#FDFBF7] p-10 border border-[#E5E0D6]">
-                <ScrollReveal animation="fade-up" delay={100}>
-                    <h3 className="serif text-xl text-[#1A1918] mb-6 pb-4 border-b border-[#E5E0D6]">详细参数</h3>
-                    <div className="space-y-4">
-                        {product.detailedSpecs ? (
-                            product.detailedSpecs.map((spec, i) => (
-                                <div key={i} className="flex justify-between items-center text-sm py-2 border-b border-[#E5E0D6]/50 last:border-0">
-                                    <span className="text-[#8A8885] font-light">{spec.label}</span>
-                                    <span className="text-[#1A1918] serif font-medium">{spec.value}</span>
-                                </div>
-                            ))
-                        ) : (
-                            <p className="text-sm text-[#8A8885]">暂无详细参数</p>
-                        )}
-                    </div>
-                </ScrollReveal>
+
+               <button className="w-full bg-[#1A1918] text-white py-5 text-xs uppercase tracking-[0.3em] hover:bg-[#C6A87C] transition-colors duration-500">
+                  立即咨询
+               </button>
             </div>
          </div>
       </section>
 
-      {/* Core Features */}
-      <section className="py-24 bg-[#FDFBF7]">
-         <div className="container mx-auto px-6">
-            <ScrollReveal animation="fade-up">
-              <div className="text-center mb-20">
-                 <h2 className="text-3xl md:text-4xl serif text-[#1A1918]">产品核心特点</h2>
-                 <div className="w-12 h-[1px] bg-[#C6A87C] mx-auto mt-6"></div>
-              </div>
-            </ScrollReveal>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-               {product.detailedFeatures?.map((feature, i) => (
-                  <ScrollReveal key={i} animation="fade-up" delay={i * 100}>
-                    <div className="bg-white p-10 shadow-sm hover:shadow-lg transition-all duration-500 h-full border-t-2 border-transparent hover:border-[#C6A87C] group">
-                       <span className="text-4xl text-[#E5E0D6] serif font-bold mb-4 block group-hover:text-[#C6A87C] transition-colors">0{i + 1}</span>
-                       <h3 className="text-xl serif text-[#1A1918] mb-4">{feature.title}</h3>
-                       <p className="text-[#8A8885] leading-loose text-sm text-justify font-light">
-                          {feature.text}
-                       </p>
-                    </div>
-                  </ScrollReveal>
-               ))}
-            </div>
+      {/* 3. Origin Introduction: Cinematic Wide Banner */}
+      <section className="relative h-[60vh] w-full overflow-hidden flex items-center justify-center mb-24 bg-[#1A1918]">
+         {/* Background with Dark Overlay */}
+         <div className="absolute inset-0 z-0">
+             <img 
+               src={product.originImage || "https://images.unsplash.com/photo-1547986042-75b508f72538?q=80&w=1600&auto=format&fit=crop"} 
+               alt="Origin Landscape" 
+               className="w-full h-full object-cover grayscale-[30%]"
+             />
+             <div className="absolute inset-0 bg-black/50"></div>
+         </div>
+         
+         <div className="relative z-10 text-center text-white px-6 max-w-4xl">
+             <ScrollReveal animation="fade-up">
+               <div className="flex items-center justify-center gap-2 mb-4 text-[#C6A87C]">
+                  <MapPinIcon className="w-5 h-5" />
+                  <span className="text-xs font-bold uppercase tracking-[0.3em]">产地溯源</span>
+               </div>
+               <h2 className="text-3xl md:text-5xl serif mb-6 drop-shadow-lg">{product.origin}</h2>
+               {/* GI Images - Doubled Size */}
+               {product.giImages && product.giImages.length > 0 && (
+                   <div className="flex flex-wrap justify-center gap-8 mt-12">
+                       {product.giImages.map((img, i) => (
+                           <img 
+                               key={i} 
+                               src={img} 
+                               alt="GI Certificate" 
+                               className="h-20 md:h-24 w-auto object-contain bg-white/10 backdrop-blur-sm rounded-lg p-2 hover:scale-105 transition-transform duration-300" 
+                           />
+                       ))}
+                   </div>
+               )}
+             </ScrollReveal>
          </div>
       </section>
 
-      {/* Usage Methods Section (Redesigned to match Features) */}
-      {product.usageMethods && (
-        <section className="py-24 bg-white border-b border-[#E5E0D6]">
-           <div className="container mx-auto px-6">
-              <ScrollReveal animation="fade-up">
-                <div className="text-center mb-20">
-                     <h4 className="text-[#C6A87C] tracking-[0.2em] text-xs font-medium uppercase mb-4">How to Enjoy</h4>
-                     <h2 className="text-3xl md:text-4xl serif text-[#1A1918]">赏味指南</h2>
-                     <div className="w-12 h-[1px] bg-[#C6A87C] mx-auto mt-6"></div>
-                </div>
-              </ScrollReveal>
+      {/* 4. Technical Parameters (Single Version) */}
+      <section className="py-12 bg-gray-50 mb-24">
+         <div className="container mx-auto px-6 max-w-4xl">
+             <ScrollReveal animation="fade-up">
+                 <div className="text-center mb-12">
+                     <h2 className="text-2xl serif text-[#1A1918] mb-2">技术参数</h2>
+                     <p className="text-xs text-gray-400 uppercase tracking-widest">严苛标准</p>
+                 </div>
+                 <div className="bg-white shadow-sm border border-gray-100">
+                     {product.detailedSpecs?.map((spec, i) => (
+                         <div key={i} className="flex flex-col sm:flex-row border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors">
+                             <div className="w-full sm:w-1/3 p-5 bg-gray-50/50 sm:border-r border-gray-100">
+                                 <span className="text-xs font-bold uppercase tracking-wider text-gray-500">{spec.label}</span>
+                             </div>
+                             <div className="w-full sm:w-2/3 p-5">
+                                 <span className="text-sm font-serif text-[#1A1918]">{spec.value}</span>
+                             </div>
+                         </div>
+                     ))}
+                 </div>
+             </ScrollReveal>
+         </div>
+      </section>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                  {product.usageMethods.map((method, i) => (
-                    <ScrollReveal key={i} animation="fade-up" delay={i * 100}>
-                        <div className="bg-[#FDFBF7] p-10 shadow-sm hover:shadow-lg transition-all duration-500 h-full border-t-2 border-transparent hover:border-[#C6A87C] group">
-                           <span className="text-4xl text-[#E5E0D6] serif font-bold mb-4 block group-hover:text-[#C6A87C] transition-colors italic">0{i + 1}</span>
-                           <h3 className="text-xl serif text-[#1A1918] mb-4">{method.title}</h3>
-                           <p className="text-[#8A8885] leading-loose text-sm text-justify font-light">
-                              {method.description}
-                           </p>
+      {/* 5. Core Advantages (Masonry/Grid) */}
+      {product.detailedFeatures && (
+        <section className="container mx-auto px-6 mb-24">
+           <div className="text-center mb-16">
+               <h2 className="text-3xl md:text-4xl serif text-[#1A1918] mb-4">核心优势</h2>
+               <div className="w-10 h-[2px] bg-[#1A1918] mx-auto"></div>
+           </div>
+           
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {product.detailedFeatures.map((feature, i) => (
+                 <ScrollReveal key={i} animation="fade-up" delay={i * 100}>
+                    <div className="group">
+                        <div className="aspect-[4/3] overflow-hidden mb-6 bg-gray-100">
+                             {feature.image && (
+                                <img 
+                                    src={feature.image} 
+                                    alt={feature.title} 
+                                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
+                                />
+                             )}
                         </div>
-                    </ScrollReveal>
+                        <div className="border-l-2 border-[#1A1918] pl-6 transition-all duration-300 group-hover:border-[#C6A87C]">
+                             <span className="text-4xl font-serif text-gray-200 block mb-2 -ml-1">0{i + 1}</span>
+                             <h3 className="text-xl serif text-[#1A1918] mb-3">{feature.title}</h3>
+                             <p className="text-sm text-gray-500 font-light leading-relaxed text-justify">{feature.text}</p>
+                        </div>
+                    </div>
+                 </ScrollReveal>
+              ))}
+           </div>
+        </section>
+      )}
+
+      {/* 6. Tasting Guide (Horizontal Steps) */}
+      {product.usageMethods && (
+        <section className="bg-[#1A1918] text-white py-24 mb-24">
+           <div className="container mx-auto px-6">
+              <div className="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-white/10 pb-8">
+                  <div>
+                      <span className="text-[#C6A87C] text-xs font-bold uppercase tracking-[0.3em] mb-2 block">赏味方式</span>
+                      <h2 className="text-3xl serif text-white">赏味指南</h2>
+                  </div>
+                  <p className="text-gray-400 text-xs font-light mt-4 md:mt-0">雪域珍宝的最佳享用方式</p>
+              </div>
+
+              <div className="space-y-12">
+                  {product.usageMethods.map((method, i) => (
+                      <ScrollReveal key={i} animation="fade-up" delay={i * 100}>
+                          <div className="flex flex-col md:flex-row gap-8 items-center group">
+                              <div className="w-full md:w-1/3 aspect-video overflow-hidden border border-white/10">
+                                   {method.image && (
+                                       <img src={method.image} alt={method.title} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+                                   )}
+                              </div>
+                              <div className="w-full md:w-2/3">
+                                  <div className="flex items-center gap-4 mb-4">
+                                      <span className="text-2xl font-serif text-[#C6A87C] italic">步骤 {i + 1}</span>
+                                      <div className="h-[1px] flex-grow bg-white/10"></div>
+                                  </div>
+                                  <h3 className="text-xl serif text-white mb-2">{method.title}</h3>
+                                  <p className="text-sm text-gray-400 font-light leading-loose">{method.description}</p>
+                              </div>
+                          </div>
+                      </ScrollReveal>
                   ))}
               </div>
            </div>
         </section>
       )}
-      
-      {/* FAQ Section (New) */}
+
+      {/* 7. FAQ (Minimal Accordion) */}
       {product.qna && (
-          <section className="py-24 bg-[#FDFBF7]">
-             <div className="container mx-auto px-6 max-w-4xl">
-                 <ScrollReveal animation="fade-up">
-                    <div className="text-center mb-16">
-                         <h4 className="text-[#C6A87C] tracking-[0.2em] text-xs font-medium uppercase mb-4">Q&A</h4>
-                         <h2 className="text-3xl serif text-[#1A1918]">常见问题</h2>
-                    </div>
-                 </ScrollReveal>
-                 
-                 <div className="space-y-4">
-                     {product.qna.map((item, i) => (
-                         <ScrollReveal key={i} animation="fade-up" delay={i * 50}>
-                             <div className="bg-white border border-[#E5E0D6] overflow-hidden">
-                                 <button 
-                                    onClick={() => toggleFaq(i)}
-                                    className="w-full flex justify-between items-center p-6 text-left hover:bg-[#FAFAFA] transition-colors"
-                                 >
-                                     <span className={`serif text-lg ${activeFaq === i ? 'text-[#C6A87C]' : 'text-[#1A1918]'}`}>{item.question}</span>
-                                     <div className={`w-6 h-6 rounded-full border border-[#D4D4D4] flex items-center justify-center transition-transform duration-300 ${activeFaq === i ? 'rotate-180 border-[#C6A87C] text-[#C6A87C]' : 'text-[#999]'}`}>
-                                        <ArrowDownIcon className="w-3 h-3" />
-                                     </div>
-                                 </button>
-                                 <div 
-                                    className={`overflow-hidden transition-all duration-500 ease-in-out ${activeFaq === i ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'}`}
-                                 >
-                                     <div className="p-6 pt-0 text-[#8A8885] font-light text-sm leading-loose">
-                                         {item.answer}
-                                     </div>
-                                 </div>
-                             </div>
-                         </ScrollReveal>
-                     ))}
-                 </div>
+          <section className="container mx-auto px-6 max-w-3xl">
+             <ScrollReveal animation="fade-up">
+                <div className="text-center mb-16">
+                     <h3 className="text-[#1A1918] text-xs font-bold uppercase tracking-[0.2em] mb-4">常见问题</h3>
+                     <h2 className="text-3xl serif text-[#1A1918]">常见问题解答</h2>
+                </div>
+             </ScrollReveal>
+             
+             <div className="border-t border-gray-200">
+                 {product.qna.map((item, i) => (
+                     <div key={i} className="border-b border-gray-200">
+                         <button 
+                            onClick={() => toggleFaq(i)}
+                            className="w-full flex justify-between items-center py-6 text-left group"
+                         >
+                             <span className="serif text-lg text-[#1A1918] group-hover:text-[#C6A87C] transition-colors pr-8">{item.question}</span>
+                             <span className={`text-2xl font-light text-gray-400 transition-transform duration-300 ${activeFaq === i ? 'rotate-45 text-[#1A1918]' : ''}`}>+</span>
+                         </button>
+                         <div 
+                            className={`overflow-hidden transition-all duration-500 ease-in-out ${activeFaq === i ? 'max-h-48 opacity-100 pb-6' : 'max-h-0 opacity-0'}`}
+                         >
+                             <p className="text-gray-500 font-light text-sm leading-loose pl-4 border-l border-[#C6A87C]">
+                                 {item.answer}
+                             </p>
+                         </div>
+                     </div>
+                 ))}
              </div>
           </section>
       )}
-
-      {/* Certificates & Reports Slideshow */}
-      <section className="py-32 bg-[#1A1918] text-[#E5E5E5] overflow-hidden">
-         <div className="container mx-auto px-6 relative">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-white/10 pb-8">
-               <div>
-                  <h4 className="text-[#C6A87C] tracking-[0.2em] text-xs font-medium uppercase mb-4">Trust & Safety</h4>
-                  <h2 className="text-3xl serif font-light">资质与检测报告</h2>
-               </div>
-               
-               {/* Controls */}
-               <div className="flex gap-4 mt-8 md:mt-0">
-                  <button onClick={() => scroll('left')} className="w-12 h-12 rounded-full border border-white/20 hover:border-[#C6A87C] hover:text-[#C6A87C] flex items-center justify-center transition-all duration-300 active:scale-95">
-                     <ArrowDownIcon className="w-4 h-4 rotate-90" />
-                  </button>
-                  <button onClick={() => scroll('right')} className="w-12 h-12 rounded-full border border-white/20 hover:border-[#C6A87C] hover:text-[#C6A87C] flex items-center justify-center transition-all duration-300 active:scale-95">
-                     <ArrowDownIcon className="w-4 h-4 -rotate-90" />
-                  </button>
-               </div>
-            </div>
-
-            {/* Slider Container */}
-            <div 
-               ref={scrollContainerRef}
-               className="flex gap-8 overflow-x-auto pb-8 snap-x snap-mandatory no-scrollbar cursor-grab active:cursor-grabbing"
-               style={{ scrollBehavior: 'smooth' }}
-            >
-               {galleryItems.length > 0 ? (
-                 galleryItems.map((item, i) => (
-                    <div key={i} className="flex-none w-[280px] md:w-[320px] snap-start group select-none">
-                       <ScrollReveal animation="fade-up" delay={i * 50} className="h-full">
-                         <div className="relative aspect-[3/4] overflow-hidden bg-white/5 mb-6 border border-white/5 transition-all duration-500 group-hover:border-[#C6A87C]/50">
-                            <img 
-                              src={item.image} 
-                              alt={item.title} 
-                              className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-500" 
-                              draggable={false}
-                            />
-                            {/* Overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
-                            
-                            {/* Zoom Icon Hint */}
-                            <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
-                               <div className="w-4 h-4 border border-white/60 rounded-full"></div>
-                            </div>
-                         </div>
-                         
-                         <div className="pl-2 border-l border-[#C6A87C] transition-all duration-300 group-hover:pl-4">
-                            <p className="text-[#C6A87C] text-[10px] tracking-[0.2em] uppercase mb-1">{item.type}</p>
-                            <h4 className="serif text-lg text-[#E5E5E5] group-hover:text-white transition-colors">{item.title}</h4>
-                         </div>
-                       </ScrollReveal>
-                    </div>
-                 ))
-               ) : (
-                  <div className="w-full text-center py-10 text-white/30 text-sm tracking-widest">
-                     暂无相关报告
-                  </div>
-               )}
-               
-               {/* Padding Right for scroll feeling */}
-               <div className="w-12 shrink-0"></div>
-            </div>
-         </div>
-      </section>
     </div>
   );
 };

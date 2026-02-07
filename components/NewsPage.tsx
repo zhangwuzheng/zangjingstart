@@ -23,15 +23,15 @@ export const NewsPage: React.FC<NewsPageProps> = ({ onBack }) => {
           <div className="w-8 h-8 border border-[#1A1918]/30 rounded-full flex items-center justify-center group-hover:bg-[#1A1918] group-hover:text-white transition-all duration-300">
              <ArrowDownIcon className="w-3 h-3 rotate-90" />
           </div>
-          <span className="text-xs uppercase tracking-[0.2em] font-medium">Home</span>
+          <span className="text-xs uppercase tracking-[0.2em] font-medium">首页</span>
         </button>
-        <span className="text-[#C6A87C] text-xs tracking-[0.3em] uppercase">News & Updates</span>
+        <span className="text-[#C6A87C] text-xs tracking-[0.3em] uppercase">新闻动态</span>
       </div>
 
       <div className="pt-32 pb-24 container mx-auto px-6 max-w-5xl">
          <ScrollReveal animation="fade-up">
             <h1 className="text-4xl md:text-6xl serif text-[#1A1918] mb-4 font-light">新闻动态</h1>
-            <p className="text-[#8A8885] text-sm tracking-widest uppercase mb-20">Latest Stories from the Plateau</p>
+            <p className="text-[#8A8885] text-sm tracking-widest uppercase mb-20">来自高原的最新故事</p>
          </ScrollReveal>
 
          <div className="space-y-20">
@@ -58,7 +58,7 @@ export const NewsPage: React.FC<NewsPageProps> = ({ onBack }) => {
                            {item.summary}
                         </p>
                         <div className="mt-8">
-                           <span className="text-xs uppercase tracking-[0.2em] text-[#1A1918] border-b border-[#1A1918] pb-1 group-hover:text-[#C6A87C] group-hover:border-[#C6A87C] transition-colors">Read Full Story</span>
+                           <span className="text-xs uppercase tracking-[0.2em] text-[#1A1918] border-b border-[#1A1918] pb-1 group-hover:text-[#C6A87C] group-hover:border-[#C6A87C] transition-colors">阅读全文</span>
                         </div>
                      </div>
                   </div>

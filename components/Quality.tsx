@@ -8,7 +8,7 @@ export const Quality: React.FC = () => {
       <div className="container mx-auto px-6">
         <ScrollReveal animation="fade-up">
           <div className="text-center mb-24">
-              <h4 className="text-[#C6A87C] tracking-[0.4em] text-xs font-medium mb-6 uppercase">Quality Foundation</h4>
+              <h4 className="text-[#C6A87C] tracking-[0.4em] text-xs font-medium mb-6 uppercase">品质基石</h4>
               <h2 className="text-3xl md:text-5xl text-[#F2F0EB] serif font-light tracking-wide">品质基石 · 核心价值</h2>
           </div>
         </ScrollReveal>

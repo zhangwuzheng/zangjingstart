@@ -59,7 +59,7 @@ export const Hero: React.FC = () => {
            
            <ScrollReveal animation="fade-up" delay={400}>
              {/* Use font-light for elegance, increased spacing */}
-             <h1 className="text-4xl md:text-7xl text-[#F2F0EB] font-light leading-tight serif mb-10 drop-shadow-2xl tracking-wide">
+             <h1 className="text-4xl md:text-7xl text-[#F2F0EB] font-light leading-tight serif mb-10 drop-shadow-2xl tracking-wide whitespace-nowrap">
                <span className="block mb-2">藏境山水</span>
              </h1>
            </ScrollReveal>
@@ -82,7 +82,7 @@ export const Hero: React.FC = () => {
              </div>
            </ScrollReveal>
            <ScrollReveal animation="fade-in" delay={1000} className="h-full">
-             <div className="vertical-text text-[#E5E5E5] text-3xl tracking-[0.6em] font-light serif h-full py-8 text-shadow-sm">
+             <div className="vertical-text text-[#E5E5E5] text-3xl tracking-[0.6em] font-light serif h-full py-8 text-shadow-sm whitespace-nowrap">
                 山有藏珍 水至净境
              </div>
            </ScrollReveal>
@@ -91,7 +91,7 @@ export const Hero: React.FC = () => {
 
       {/* Scroll Indicator - Minimalist */}
       <div className="absolute bottom-12 left-1/2 -translate-x-1/2 text-white/30 flex flex-col items-center gap-4 z-20">
-        <span className="text-[9px] tracking-[0.3em] uppercase">Scroll</span>
+        <span className="text-[9px] tracking-[0.3em] uppercase">滑动探索</span>
         <div className="h-12 w-[1px] bg-gradient-to-b from-transparent via-white/40 to-transparent"></div>
       </div>
     </section>

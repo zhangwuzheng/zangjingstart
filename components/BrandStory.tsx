@@ -9,7 +9,7 @@ export const BrandStory: React.FC = () => {
       <div className="absolute top-20 right-0 z-0 pointer-events-none select-none opacity-[0.03]">
         <Parallax speed={-0.15}>
             <div className="text-[12rem] md:text-[18rem] font-serif text-[#1A1918] leading-none tracking-tighter">
-                STORY
+                ORIGIN
             </div>
         </Parallax>
       </div>
@@ -45,7 +45,7 @@ export const BrandStory: React.FC = () => {
             <ScrollReveal animation="fade-up">
               <div className="flex items-center gap-4 mb-6">
                  <span className="h-[1px] w-8 bg-[#C6A87C]"></span>
-                 <h4 className="text-[#C6A87C] tracking-[0.3em] text-xs font-medium uppercase">Brand Positioning</h4>
+                 <h4 className="text-[#C6A87C] tracking-[0.3em] text-xs font-medium uppercase">品牌定位</h4>
               </div>
               <h2 className="text-4xl md:text-6xl text-[#1A1918] serif font-light mb-12 leading-tight">
                 守护雪域珍稀<br />
